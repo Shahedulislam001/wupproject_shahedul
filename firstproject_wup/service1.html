@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/script.js"></script>
+    <title>programming contest</title>
+    <style>
+      img{
+        width: 100%;
+        border-radius: 5px;
+      }
+    </style>
+    
+</head>
+<body>
+    <header-temp></header-temp>
+    <div class="jumbotron">
+      <h1 class="display-4 text-center">Programming contest!</h1>
+      <p class="lead px-4 py-4">Competitive programming is a mind sport usually held over the Internet or a local network, involving participants trying to program according to provided specifications. Contestants are referred to as sport programmers. Competitive programming is recognized and supported by several multinational software and Internet companies, such as Google and Facebook.
+
+        A programming competition generally involves the host presenting a set of logical or mathematical problems, also known as puzzles, to the contestants (who can vary in number from tens or even hundreds to several thousands), and contestants are required to write computer programs capable of solving each problem. Judging is based mostly upon number of problems solved and time spent for writing successful solutions, but may also include other factors (quality of output produced, execution time, memory usage, program size, etc.) </p>
+      <hr class="my-4">
+      <p class="py-4 px-4">below here is available programming contest about to held>>>>>>>>>>></p>
+      <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+    </div>
+    <div id="cardcontainer" class="row justify-content-center">  </div>
+
+    
+     <script>
+        let url = "https://kontests.net/api/v1/all"
+let response = fetch(url)
+response.then((v) => {
+  return v.json()
+}).then((contests) => {
+  console.log(contests)
+  ihtml = ""
+  for (item in contests) {
+    console.log(contests[item])
+    ihtml += `
+        <div class="card mx-2 my-2" style="width: 22rem;">
+        <img src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${contests[item].name}</h5>
+          <p class="card-text">Status is ${contests[item].status}"></p>
+          <p class="card-text">In 24 Hours? ${contests[item].in_24_hours} </p>
+          <p> Starts at :${contests[item].start_time} </p>
+          <p> Ends at :${contests[item].end_time} </p>
+          <a href="${contests[item].url}" class="btn btn-primary m-4">Visit page</a>
+        </div>
+      </div>
+    
+    `
+  }
+  cardcontainer.innerHTML = ihtml;
+})
+     </script>
+
+    <footer-temp></footer-temp>
+</body>
+</html>
